@@ -1,15 +1,11 @@
 import * as axios from 'axios';
-import Promise from 'bluebird'
 
 export function getNotes(options){
-  // return Promise().resolve(['111','222']);
-  const url = 'http://localhost:8000/notes';
-  return axios.get(url,  {
-  //   headers: {
-  //     'Access-Control-Allow-Origin': '*',
-  //     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
-  //     "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS"
-  //   }
-  }
-  );
+  const url = 'http://127.0.0.1:8000/notes';
+  return axios.get(url);
+}
+
+export function saveNote(note) {
+  const url = 'http://127.0.0.1:8000/notes';
+  debugger;
 }

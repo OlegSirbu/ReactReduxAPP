@@ -1,2 +1,2 @@
-export { fetchNotes } from './notes';
+export { fetchNotes, saveNotes } from './notesActions';
 

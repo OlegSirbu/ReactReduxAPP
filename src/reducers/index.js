@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import { notesReducer } from './notes';
+import { notesReducer } from './notesReducers';
+import ajaxSatatusReducer from './ajaxSatatusReducer';
 
 const rootReducer = combineReducers({
-  notes: notesReducer
+  notes: notesReducer,
+  ajaxSatatusReducer
 });
 
 export default rootReducer
