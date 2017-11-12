@@ -1,11 +1,11 @@
 import * as types  from '../../actions/types';
-import { getUsers } from '../../api';
+import { getNotes } from '../../api';
 
-export const fetchUsers = () => {
+export const fetchNotes = () => {
   return (dispatch) => {
-    getUsers().then((response)=>{
+    getNotes().then((response)=>{
       return dispatch({
-        type: types.SUCCESS_LOAD_USERS,
+        type: types.SUCCESS_LOAD_NOTES,
         payload: response.data
       });  
     });

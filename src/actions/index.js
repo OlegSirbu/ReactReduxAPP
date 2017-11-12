@@ -1,2 +1,2 @@
-export const REQUEST_USERS = 'REQUEST_POSTS';
+export { fetchNotes } from './notes';
 

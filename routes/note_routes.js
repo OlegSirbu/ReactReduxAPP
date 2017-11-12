@@ -38,6 +38,7 @@ module.exports = function (app, db){
   });
 
   app.post('/notes', (req, res) =>{
+    console.log(req);
     const note = {text: req.body.body, title: req.body.title};
     db.collection('notes').insert(note, (err, result) =>{
       if(err){
