@@ -1,10 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
+import { Router, browserHistory } from 'react-router';
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import reducer from './reducers'
-import App from './components/App'
+import routes from './routes';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 const store = createStore(
   reducer,
@@ -13,7 +16,7 @@ const store = createStore(
 
 render(
   <Provider store={store} >
-    <App />
+    <Router history={browserHistory} routes={routes} />
   </Provider>,
   document.getElementById('root')
-)
+);
