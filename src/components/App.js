@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import Header from './common/Header';
 import './App.css';
-
 import {fetchNotes} from '../actions';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
   constructor(props){
@@ -10,24 +11,29 @@ class App extends Component {
   }
 
   componentDidMount() {
-    debugger;
     this.props.fetchNotes();
   }
 
   render() {
     return (
-      <div className="App">
-        {this.props.notes.map((note, index)=>{
-          return <div key={index}>{note} </div>
-        })}
-      </div>
+    <div>
+      <MuiThemeProvider>
+        <div className="App">
+          <Header
+            loading={this.props.loading}
+          />
+          {this.props.children}
+        </div>
+      </MuiThemeProvider>
+    </div>
     );
   }
 }
 
 const mapStateToProps = (state)=> {
   return {
-    notes: state.notes
+    notes: state.notes,
+    loading: false
   }
 };
 
