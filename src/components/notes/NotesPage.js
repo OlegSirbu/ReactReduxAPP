@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
-// import * as courseActions from '../../actions/courseActions';
+//import * as courseActions from '../../actions/notesActions';
 import NotesList from './NotesList';
 import Button from '../common/Button';
 

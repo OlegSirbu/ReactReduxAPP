@@ -1,11 +1,11 @@
 import * as types  from './types';
-import { getNotes, saveNote } from '../api';
+import { getNotesApi, saveNoteApi } from '../api';
 import {beginAjaxCall} from './ajaxStatusActions';
 
-export const fetchNotes = () => {
+export function fetchNotes(){
   return (dispatch) => {
     dispatch(beginAjaxCall());
-    getNotes().then((response)=>{
+    return getNotesApi().then((response)=>{
       return dispatch({
         type: types.SUCCESS_LOAD_NOTES,
         payload: response.data
@@ -13,15 +13,15 @@ export const fetchNotes = () => {
     }).catch(err=>{
     });
   }
-};
+}
 
-export  const saveNotes = (notes) => {
+export function saveNote(note) {
   return (dispatch) => {
     dispatch(beginAjaxCall());
-      saveNote().then(()=>{
+      return saveNoteApi(note).then(()=>{
         return dispatch({
           type: types.SUCCESS_SAVE_NOTES
         });
       })
   }
-};
+}

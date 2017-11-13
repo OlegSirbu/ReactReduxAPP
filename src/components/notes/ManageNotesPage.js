@@ -27,7 +27,6 @@ class ManageNotesPage extends React.Component {
 
   updateNoteState(event) {
     const field = event.target.name;
-    debugger;
     let note = this.state.note;
     note[field] = event.target.value;
     return this.setState({note: note});
@@ -36,7 +35,7 @@ class ManageNotesPage extends React.Component {
   onSave(event) {
     event.preventDefault();
     this.setState({saving: true});
-    this.props.actions.saveNotes(this.state.note)
+    this.props.actions.saveNote(this.state.note)
       .then(() => this.redirect())
       .catch(err => {
         this.setState({saving: false});
@@ -45,7 +44,10 @@ class ManageNotesPage extends React.Component {
 
   redirect(){
     this.setState({saving: false});
-    this.context.router.push('/notes')
+    this.props.actions.fetchNotes().then(()=>{
+      this.context.router.push('/notes');
+    });
+
   }
 
   render() {

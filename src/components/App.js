@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Header from './common/Header';
 import './App.css';
-import {fetchNotes} from '../actions';
+import {fetchNotes} from '../actions/notesActions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
