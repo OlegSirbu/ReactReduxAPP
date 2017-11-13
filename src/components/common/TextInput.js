@@ -1,14 +1,14 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 
-const TextInput = ({onChange, value, error, type, placeholder, name}) => {
+const TextInput = ({onChange, value, error, type, label, name}) => {
   return (
   <div>
     <div>
       <TextField
         name={name}
         type={type}
-        floatingLabelText={placeholder}
+        floatingLabelText={label}
         errorText={error}
         onChange={(event) => onChange(event)}
         value={value}

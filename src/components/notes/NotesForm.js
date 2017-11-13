@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
-// import SelectInput from '../common/SelectInput';
 
 const NotesForm = ({note, onSave, onChange, saving, errors}) => {
   return (
@@ -16,7 +15,7 @@ const NotesForm = ({note, onSave, onChange, saving, errors}) => {
 
       <TextInput
         name="text"
-        label="text"
+        label="Text"
         value={note.text}
         onChange={onChange}
         error={errors}
