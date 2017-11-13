@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NotesListRows from './NotesListRows';
 
-const CourseList = ({ notes }) => {
+const NoteList = ({ notes }) => {
   return (
     <table className="table">
       <thead>
@@ -12,15 +12,15 @@ const CourseList = ({ notes }) => {
 
       <tbody>
         {notes.map((note)=>
-          <NotesListRows key={note._id} note={note}/>
+          <NotesListRows key={note.title+ '_' +note._id} note={note}/>
         )}
       </tbody>
     </table>
   );
 };
 
-CourseList.propTypes =  {
+NoteList.propTypes =  {
   courses: PropTypes.array
 };
 
-export default CourseList;
+export default NoteList;
