@@ -2,7 +2,7 @@ import * as types from '../actions/types';
 import initialState from './initialState';
 
 function actionsTypeEndsInSuccess(type) {
-  return type.substring(type.length - 8 ) == '_SUCCESS';
+  return type.substring(type.length - 8 ) === '_SUCCESS';
 }
 
 export default function ajaxStatusReducer(state = initialState.ajaxCallInProgress, actions) {

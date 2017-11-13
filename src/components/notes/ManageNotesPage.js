@@ -12,13 +12,17 @@ class ManageNotesPage extends React.Component {
 
     this.state = {
       note: Object.assign({}, this.props.note),
-      error: {},
       saving: false
     };
 
-    console.log('STATE',this.state.note);
     this.updateNoteState = this.updateNoteState.bind(this);
     this.onSave = this.onSave.bind(this);
+  }
+  
+  componentWillReceiveProps(nextProps) {
+    if(this.props.note._id !== nextProps.note._id) {
+      this.setState({note: Object.assign({}, nextProps.note)});
+    }
   }
 
   updateNoteState(event) {
@@ -65,7 +69,7 @@ ManageNotesPage.contextTypes = {
 };
 
 function getCourseById(notes, id){
-  const note = notes.filter(note => note._id == id );
+  const note = notes.filter(note => note._id === id );
   if(note) return note[0];
   return null;
 }
@@ -77,7 +81,7 @@ function mapStateToProps(state, ownProps) {
   if(noteId && state.notes.length > 0){
     note = getCourseById(state.notes, noteId);
   }
-  console.log('NOTES',note);///need send new note to state!!!!
+
   return {
     note: note
   }

@@ -6,10 +6,6 @@ import {fetchNotes} from '../actions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
-  constructor(props){
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchNotes();
   }
@@ -20,7 +16,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <Header
-            loading={this.props.loading}
+            {...this.props}
           />
           {this.props.children}
         </div>

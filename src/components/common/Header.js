@@ -5,36 +5,62 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      initalTab : '0'
+    };
+    this.setTab = this.setTab.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
 
+  setTab(){
     switch (window.location.pathname) {
       case '/about':
-        this.state = {initalTab: 1};
+      case 'about':
+        this.setState({initalTab: '1'});
         break;
       case '/notes':
-        this.state = {initalTab: 2};
+      case '/note':
+      case `/note/${this.props.params.id}`:
+        this.setState({initalTab: '2'});
+        break;
         break;
       default:
-        this.state = {initalTab: 0};
-        break;
+        this.setState({initalTab: '0'});
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setTab()
+  }
+
+  handleChange = (value) => {
+    this.setState({
+      initalTab: value
+    });
+  };
+
   render() {
     return (
-      <Tabs initialSelectedIndex={this.state.initalTab}>
+      <Tabs
+        value={this.state.initalTab}
+        onChange={this.handleChange}
+      >
         <Tab
+          value='0'
           label="Home"
           containerElement={<IndexLink to='/'></IndexLink>}
         >
         </Tab>
         <Tab
+          value='1'
           label="About"
-          containerElement={<Link to="about" activeClassName="active"></Link>}
+          containerElement={<Link to="/about" activeClassName="active"></Link>}
         >
         </Tab>
         <Tab
+          value='2'
           label="Notes"
-          containerElement={<Link to="notes" activeClassName="active"></Link>}
+          containerElement={<Link to="/notes" activeClassName="active"></Link>}
         >
         </Tab>
       </Tabs>

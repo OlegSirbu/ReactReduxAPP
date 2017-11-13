@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import {browserHistory} from 'react-router';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 // import * as courseActions from '../../actions/courseActions';
 import NotesList from './NotesList';
@@ -42,7 +40,7 @@ NotesPage.propTypes = {
   notes: PropTypes.array.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
   return {
     notes: state.notes
   };
