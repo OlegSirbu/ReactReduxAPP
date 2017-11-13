@@ -1,8 +1,13 @@
+This is repo contains beckend and Front end stuff.
+For save all data I use `MLab`. 
 
-npm install
+Before start run command 
+
+```npm install```
 
 For running Node server
-command `npm run dev`
+use command `npm run dev`
 
-In file 'routes/note_routes.js' implemented all GRUD operations
+For running UI use command `npm start`
 
+Routing for Beckend implemented in 'routes/note_routes.js', all GRUD operations.
