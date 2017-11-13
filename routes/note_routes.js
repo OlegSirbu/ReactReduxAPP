@@ -50,9 +50,11 @@ module.exports = function (app, db){
     });
   });
 
-  app.post('/notes', (req, res) =>{
-    console.log(req);
-    const note = {text: req.body.body, title: req.body.title};
+  app.post('/notes', (req, res) => {
+    const {body: {text, title}} = req;
+    if(!text && !title) return res.send({'error': 'data is empty!'});
+    const note = {text, title};
+
     db.collection('notes').insert(note, (err, result) =>{
       if(err){
         res.send({'error': 'An error has occurred'});
