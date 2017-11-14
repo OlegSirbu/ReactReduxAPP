@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
-//import * as courseActions from '../../actions/notesActions';
+import '../App.css';
+import {fetchNotes} from '../../actions/notesActions';
 import NotesList from './NotesList';
 import Button from '../common/Button';
 
@@ -16,6 +17,10 @@ class NotesPage extends React.Component {
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     this.handleRowSelection = this.handleRowSelection.bind(this);
     this.isSelected = this.isSelected.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchNotes();
   }
 
   handleRowSelection = (selectedRows) => {
@@ -37,9 +42,9 @@ class NotesPage extends React.Component {
       <div>
         <div>
           <div>
-            <h2>Notes page</h2>
+            <h1>Notes page</h1>
           </div>
-          <div >
+          <div>
             <Button
               label="Create new Note"
               onClick={this.redirectToAddCoursePage}
@@ -62,10 +67,8 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-  // return {
-  //   actions: bindActionCreators(courseActions, dispatch)
-  // };
-// }
+const mapDispatchToProps = (dispatch) => ({
+  fetchNotes: () => dispatch(fetchNotes())
+});
 
-export default connect(mapStateToProps)(NotesPage);
+export default connect(mapStateToProps,mapDispatchToProps)(NotesPage);

@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
 
 const NotesForm = ({note, onSave, onChange, saving, errors}) => {
   return (
-    <form >
+    <form className="center-form">
       <TextInput
         name="title"
         label="Title"

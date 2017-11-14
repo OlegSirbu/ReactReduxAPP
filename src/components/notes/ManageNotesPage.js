@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as notesActions from '../../actions/notesActions';
+import {fetchNotes, saveNote} from '../../actions/notesActions';
 
 import NotesForm from './NotesForm';
 
@@ -18,7 +17,11 @@ class ManageNotesPage extends React.Component {
     this.updateNoteState = this.updateNoteState.bind(this);
     this.onSave = this.onSave.bind(this);
   }
-  
+
+  componentDidMount() {
+    this.props.fetchNotes();
+  }
+
   componentWillReceiveProps(nextProps) {
     if(this.props.note._id !== nextProps.note._id) {
       this.setState({note: Object.assign({}, nextProps.note)});
@@ -35,7 +38,7 @@ class ManageNotesPage extends React.Component {
   onSave(event) {
     event.preventDefault();
     this.setState({saving: true});
-    this.props.actions.saveNote(this.state.note)
+    this.props.saveNote(this.state.note)
       .then(() => this.redirect())
       .catch(err => {
         this.setState({saving: false});
@@ -44,10 +47,9 @@ class ManageNotesPage extends React.Component {
 
   redirect(){
     this.setState({saving: false});
-    this.props.actions.fetchNotes().then(()=>{
+    this.props.fetchNotes().then(()=>{
       this.context.router.push('/notes');
     });
-
   }
 
   render() {
@@ -89,10 +91,10 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(notesActions, dispatch)
-  };
-}
+const mapDispatchToProps = (dispatch) => ({
+  fetchNotes: () => dispatch(fetchNotes()),
+  saveNote: (params) => dispatch(saveNote(params))
+});
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageNotesPage);
