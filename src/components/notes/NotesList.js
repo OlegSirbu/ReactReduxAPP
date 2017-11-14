@@ -1,21 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NotesListRows from './NotesListRows';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow
+} from 'material-ui/Table';
 
-const NoteList = ({ notes }) => {
+
+const NoteList = ({ notes, isSelected }) => {
   return (
-    <table className="table">
-      <thead>
-        <th>Title</th>
-        <th>Text</th>
-      </thead>
-
-      <tbody>
-        {notes.map((note)=>
-          <NotesListRows key={note.title+ '_' +note._id} note={note}/>
+    <Table
+    >
+      <TableHeader
+        displaySelectAll={false}
+        adjustForCheckbox={false}
+      >
+        <TableRow>
+          <TableHeaderColumn>ID</TableHeaderColumn>
+          <TableHeaderColumn>Title</TableHeaderColumn>
+          <TableHeaderColumn>Text</TableHeaderColumn>
+        </TableRow>
+      </TableHeader>
+      <TableBody
+        displayRowCheckbox={false}
+      >
+        {notes.map((note,index)=>
+          <NotesListRows key={note.title+ '_' +note._id} note={note} index={index} isSelected={isSelected}/>
         )}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 };
 

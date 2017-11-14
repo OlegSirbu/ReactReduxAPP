@@ -9,12 +9,28 @@ import Button from '../common/Button';
 class NotesPage extends React.Component {
   constructor(props, context){
     super(props, context);
+    this.state = {
+      selected: []
+    };
+
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+    this.handleRowSelection = this.handleRowSelection.bind(this);
+    this.isSelected = this.isSelected.bind(this);
   }
+
+  handleRowSelection = (selectedRows) => {
+    this.setState({
+      selected: selectedRows
+    });
+  };
 
   redirectToAddCoursePage() {
     browserHistory.push('/note')
   }
+
+  isSelected = (index) => {
+    return this.state.selected.indexOf(index) !== -1;
+  };
 
   render() {
     return (
@@ -28,7 +44,7 @@ class NotesPage extends React.Component {
               label="Create new Note"
               onClick={this.redirectToAddCoursePage}
             />
-            <NotesList notes={this.props.notes}/>
+            <NotesList notes={this.props.notes} isSelected={this.isSelected} handleRowSelection={this.handleRowSelection}/>
           </div>
         </div>
       </div>
