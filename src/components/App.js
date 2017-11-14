@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Header from './common/Header';
 import './App.css';
-import {fetchNotes} from '../actions/notesActions';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.fetchNotes();
-  }
-
   render() {
     return (
     <div>
@@ -29,13 +24,10 @@ class App extends Component {
 const mapStateToProps = (state)=> {
   return {
     notes: state.notes,
+    news: state.news,
     loading: false
   }
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchNotes: () => dispatch(fetchNotes())
-});
-
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
 
