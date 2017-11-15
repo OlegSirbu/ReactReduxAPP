@@ -9,7 +9,7 @@ export function fetchNotes(){
       return dispatch({
         type: types.SUCCESS_LOAD_NOTES,
         payload: response.data
-      });  
+      });
     }).catch(err=>{
     });
   }
@@ -22,6 +22,7 @@ export function saveNote(note) {
         return dispatch({
           type: types.SUCCESS_SAVE_NOTES
         });
-      })
+      }).catch(err=>{
+      });
   }
 }

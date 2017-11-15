@@ -9,8 +9,7 @@ export function fetchNews(){
       return dispatch({
         type: types.SUCCESS_LOAD_NEWS,
         payload: response.data.sources
-      });  
-    }).catch(err=>{
-    });
+      });
+    })
   }
 }
