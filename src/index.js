@@ -7,6 +7,8 @@ import thunk from 'redux-thunk'
 import reducer from './reducers'
 import routes from './routes';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import '../node_modules/toastr/build/toastr.min.css';
+
 injectTapEventPlugin();
 
 const store = createStore(

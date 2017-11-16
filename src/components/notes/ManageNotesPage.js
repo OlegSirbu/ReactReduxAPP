@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {fetchNotes, saveNote} from '../../actions/notesActions';
-
 import NotesForm from './NotesForm';
+import toastr from 'toastr';
 
 class ManageNotesPage extends React.Component {
   constructor(props, context) {
@@ -39,8 +39,12 @@ class ManageNotesPage extends React.Component {
     event.preventDefault();
     this.setState({saving: true});
     this.props.saveNote(this.state.note)
-      .then(() => this.redirect())
+      .then(() => {
+        toastr.success('Succes save note');
+        this.redirect();
+      })
       .catch(err => {
+        toastr.error('Error in save note', err.response.data);
         this.setState({saving: false});
       })
   }
