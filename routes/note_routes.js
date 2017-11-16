@@ -24,7 +24,7 @@ module.exports = function (app, db){
       }
       });
   });
-  
+
   app.delete('/notes/:id', (req, res) => {
     const id = req.params.id;
     const details = { '_id': new ObjectID(id) };
@@ -53,7 +53,9 @@ module.exports = function (app, db){
 
   app.post('/notes', (req, res) => {
     const {body: {text, title}} = req;
-    if(!text && !title) return res.send({'error': 'data is empty!'});
+    if(!text && !title) {
+      return res.status(401).send('data is empty!');
+    }
     const note = {text, title};
 
     db.collection('notes').insert(note, (err, result) =>{
