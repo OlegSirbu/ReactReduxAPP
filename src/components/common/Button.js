@@ -5,10 +5,8 @@ const style = {
   margin: 12
 };
 
-const Button = ({label, onClick}) => (
-  <div>
-    <RaisedButton label={label} style={style} onClick={onClick}/>
-  </div>
+const Button = ({label, onClick, disabled}) => (
+  <RaisedButton disabled={disabled} label={label} style={style} onClick={onClick}/>
 );
 
 export default Button;
