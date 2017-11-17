@@ -20,12 +20,17 @@ class Header extends Component {
         break;
       case '/notes':
       case '/note':
+      case '/note/':
       case `/note/${this.props.params.id}`:
         this.setState({initalTab: '2'});
         break;
       default:
         this.setState({initalTab: '0'});
     }
+  }
+
+  componentDidMount() {
+    this.setTab();
   }
 
   componentWillReceiveProps(nextProps){
