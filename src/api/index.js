@@ -1,7 +1,10 @@
 import * as axios from 'axios';
 
-export function getNewsApi(){
-  const url = 'https://newsapi.org/v1/sources?language=en&apiKey=9f55d974fffd4796a278408ae223ab54';
+export function getNewsApi(params){
+  const {country} = params;
+  let url = 'https://newsapi.org/v1/sources?language=en&apiKey=9f55d974fffd4796a278408ae223ab54';
+  if(country) url = `${url}&country=${country}`;
+
   return axios.get(url);
 }
 

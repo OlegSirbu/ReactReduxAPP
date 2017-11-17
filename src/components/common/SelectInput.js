@@ -1,28 +1,23 @@
 import React from 'react';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
-const SelectInput = ({name, label, onChange, defaultOptions, value, error, options}) => {
-    let wrapperClasses = 'form-group';
-    if(error && error.length > 0){
-        wrapperClasses += 'has-error';
-    }
+const renderMenuItem = ({nameItem, index}) => {
+  return(
+    <MenuItem value={nameItem.value} primaryText={nameItem.name} key={nameItem+'_'+index}/>
+  )
+};
+
+const SelectInput = ({nameSelect, handleChange, value, options}) => {
     return(
-        <div className={wrapperClasses} >
-            <label htmlFor={name}>{label}</label>
-            <div className='field'>
-                <select
-                    name={name}
-                    value={value}
-                    onChange={onChange}
-                    className='form-control'
-                >
-                <options value="">{defaultOptions}</options>
-                {options.map((option)=> {
-                    return <option key={option.value} value={option.value}>{option.text}</option>
-                })
-                }
-                </select>
-                {error && <div className="alert alert-danger">{error}</div> }
-            </div>
+        <div>
+            <SelectField
+                floatingLabelText={nameSelect}
+                value={value}
+                onChange={handleChange}
+            >
+                {options.map((nameItem, index) => renderMenuItem({nameItem, index}))}
+            </SelectField>
         </div>
     );
 };
