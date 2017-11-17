@@ -5,6 +5,11 @@ export function getNewsApi(){
   return axios.get(url);
 }
 
+export function deleteNoteApi(id){
+  const url = `http://127.0.0.1:8000/notes/${id}`;
+  return axios.delete(url);
+}
+
 export function getNotesApi(){
   const url = 'http://127.0.0.1:8000/notes';
   return axios.get(url);

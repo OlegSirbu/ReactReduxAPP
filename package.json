@@ -7,6 +7,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "install": "^0.10.1",
+    "jquery": "^3.2.1",
     "material-ui": "^0.19.4",
     "mongodb": "^2.2.33",
     "npm": "^5.5.1",
@@ -18,7 +19,8 @@
     "react-tap-event-plugin": "^3.0.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.x"
+    "redux-thunk": "^2.x",
+    "toastr": "^2.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.12.1",
