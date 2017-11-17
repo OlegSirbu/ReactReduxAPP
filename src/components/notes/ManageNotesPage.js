@@ -19,7 +19,7 @@ class ManageNotesPage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchNotes();
+    !!this.props.params.id && this.props.fetchNotes();
   }
 
   componentWillReceiveProps(nextProps) {
