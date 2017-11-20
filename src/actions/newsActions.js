@@ -2,13 +2,13 @@ import * as types  from './types';
 import { getNewsApi } from '../api';
 import {beginAjaxCall} from './ajaxStatusActions';
 
-export function fetchNews(params){
+export function fetchNews(){
   return (dispatch) => {
     dispatch(beginAjaxCall());
-    return getNewsApi(params).then((response)=>{
+    return getNewsApi().then((response)=>{
       return dispatch({
         type: types.SUCCESS_LOAD_NEWS,
-        payload: response.data.sources
+        payload: response.data.articles
       });
     })
   }

@@ -14,8 +14,7 @@ class NewsItemPage extends React.Component {
 			return (
 				<Card>
 					<CardTitle
-						title={newsItem.name}
-						subtitle={newsItem.category}
+						title={newsItem.title}
   				/>
 					<CardText>
 							{newsItem.description}
@@ -31,14 +30,14 @@ NewsItemPage.propTypes = {
 };
 
 function getNewsById(news, id){
-		const newsItem = news.filter(item => item.id === id );
+		const newsItem = news.filter(item => item.url.split("/").pop(-1) === id );
 		if(newsItem) return newsItem[0];
 		return null;
 }
 
 function mapStateToProps(state, ownProps) {
 		let newsId = ownProps.params.title;
-		let newsItem = {id: newsId, name: '', description: '', category: ''};
+		let newsItem = {id: newsId, title: '', description: ''};
 		if(newsId && state.news.length > 0) newsItem = getNewsById(state.news, newsId);
 
 		return {

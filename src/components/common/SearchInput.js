@@ -11,21 +11,21 @@ export default class SearchInput extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(this.props.dataSource.length !== nextProps.dataSource.length) {
-      const names = nextProps.dataSource.map((item)=>{return item.name})
+      const names = nextProps.dataSource.map((item)=>{return item.title});
       this.setState({names: Object.assign([], names)});
     }
   }
 
   handleUpdateInput = (searchText) => {
     this.setState({
-      searchText: searchText,
+      searchText: searchText
     });
   };
 
   handleNewRequest = (targetValue) => {
     this.props.onSelect(targetValue);
     this.setState({
-      searchText: '',
+      searchText: ''
     });
   };
 
@@ -33,7 +33,8 @@ export default class SearchInput extends Component {
     return (
       <div>
         <AutoComplete
-          hintText="Seatch"
+          fullWidth={true}
+          hintText="Search"
           searchText={this.state.searchText}
           onUpdateInput={this.handleUpdateInput}
           onNewRequest={this.handleNewRequest}

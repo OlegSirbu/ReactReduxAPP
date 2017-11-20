@@ -7,7 +7,7 @@ const NewsList = ({ news }) => {
 		return (
 			<GridList>
 					{news.map((tile) => (
-							<NewsItemCell tile={tile} key={tile.publishedAt+'_'+tile.url}/>
+							<NewsItemCell id={tile.url.split("/").pop(-1)} tile={tile} key={tile.publishedAt+'_'+tile.url}/>
 					))}
 			</GridList>
 		);
