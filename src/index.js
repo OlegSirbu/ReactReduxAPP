@@ -8,6 +8,8 @@ import reducer from './reducers'
 import routes from './routes';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import '../node_modules/toastr/build/toastr.min.css';
+import '../node_modules/materialize-css/dist/css/materialize.min.css';
+import '../node_modules/materialize/index.js';
 
 injectTapEventPlugin();
 
