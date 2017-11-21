@@ -1,16 +1,22 @@
 var ObjectID = require('mongodb').ObjectID;
 module.exports = function (app, db){
+
   app.get('/notes',  (req, res) => {
-    db.collection('notes').find({},(err, items) => {
-      if (err) {
-        res.send({'error':'An error has occurred'});
-      } else {
-        items.toArray(function (err, notes) {
-          if(err) res.send({'error':'An error has occurred'});
-          res.send(notes);
-        });
-      }
+    const  {limit = 10, page = 1} = req.query;
+    const params = { skip: (page-1) * limit, limit: +limit };
+
+    db.collection('notes').find({}, params).toArray((err, notes)=>{
+      if(err) res.send({'error':'An error has occurred'});
+      res.send(notes);
     });
+  });
+
+  app.get('/notes-count', (req, res) => {
+    db.collection('notes',(err, coll)=>{
+      coll.count((err, count)=>{
+        res.send(count.toString());
+      });
+    })
   });
 
   app.get('/notes/:id', (req, res) => {
