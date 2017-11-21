@@ -8,5 +8,5 @@ export default {
     notesPage: 1
   },
   news: [],
-  ajaxCallInProgress: 0
+  ajaxStatusReducer: 0
 };
