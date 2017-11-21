@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
+import {Pagination} from 'react-materialize'
+
 import '../App.css';
-import {fetchNotes, deleteNote} from '../../actions/notesActions';
+import {fetchNotes, deleteNote, fetchNotesCount} from '../../actions/notesActions';
 import NotesList from './NotesList';
 import Button from '../common/Button';
 import toastr from 'toastr';
@@ -20,15 +22,17 @@ class NotesPage extends React.Component {
     this.isSelected = this.isSelected.bind(this);
     this.deleteNoteHandler = this.deleteNoteHandler.bind(this);
     this.getNotes = this.getNotes.bind(this);
+    this.handlerSelectPage = this.handlerSelectPage.bind(this);
   }
 
   componentDidMount() {
-    this.getNotes()
+    this.getNotes();
   }
 
   getNotes(){
     setTimeout(()=>{
-      return this.props.fetchNotes();
+      this.props.fetchNotes();
+      this.props.fetchNotesCount();
     }, 1000);
   }
 
@@ -61,7 +65,14 @@ class NotesPage extends React.Component {
     });
   };
 
+  handlerSelectPage(selectedPage) {
+    this.props.fetchNotes({page: selectedPage});
+  }
+
   render() {
+    const {notesCount, notes, limitPerPage, notesPage} = this.props;
+    const itemsPage = Math.ceil(notesCount / limitPerPage);
+
     return (
       <div>
         <div>
@@ -78,9 +89,12 @@ class NotesPage extends React.Component {
               label="Delete"
               onClick={this.deleteNoteHandler}
             />
+
+            <Pagination items={itemsPage} activePage={notesPage} maxButtons={5} onSelect={this.handlerSelectPage}/>
+
             <NotesList
               isSelectedHandler={this.isSelected}
-              notes={this.props.notes}
+              notes={notes}
               handleRowSelection={this.handleRowSelection}
              />
           </div>
@@ -95,13 +109,22 @@ NotesPage.propTypes = {
 };
 
 function mapStateToProps(state) {
+  const {
+        notesState: { notes, notesCount },
+        pagination: { limit, notesPage }
+        } = state;
+  
   return {
-    notes: state.notes
+    notes: notes,
+    notesCount: notesCount,
+    limitPerPage: limit,
+    notesPage: notesPage
   };
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchNotes: () => dispatch(fetchNotes()),
+  fetchNotes: (params) => dispatch(fetchNotes(params)),
+  fetchNotesCount: () => dispatch(fetchNotesCount()),
   deleteNote: (ids) => dispatch(deleteNote(ids))
 });
 

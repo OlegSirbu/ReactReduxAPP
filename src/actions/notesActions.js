@@ -1,6 +1,6 @@
 import * as types  from './types';
 import Promise from 'bluebird';
-import { getNotesApi, saveNoteApi, deleteNoteApi } from '../api';
+import { getNotesApi, saveNoteApi, deleteNoteApi, fetchNotesCountApi } from '../api';
 import { beginAjaxCall } from './ajaxStatusActions';
 
 export function deleteNote(ids) {
@@ -17,10 +17,10 @@ export function deleteNote(ids) {
 		}
 }
 
-export function fetchNotes() {
+export function fetchNotes(params) {
 		return (dispatch) => {
 				dispatch(beginAjaxCall());
-				return getNotesApi().then((response)=> {
+				return getNotesApi(params).then((response)=> {
 						return dispatch({
 								type   : types.SUCCESS_LOAD_NOTES,
 								payload: response.data
@@ -35,6 +35,18 @@ export function saveNote(note) {
 				return saveNoteApi(note).then(()=> {
 						return dispatch({
 								type: types.SUCCESS_SAVE_NOTES
+						});
+				});
+		}
+}
+
+export function fetchNotesCount() {
+		return (dispatch) => {
+				dispatch(beginAjaxCall());
+				return fetchNotesCountApi().then((response)=>{
+						return dispatch({
+								type: types.SUCCESS_GET_NOTES_COUNT,
+								payload: response.data
 						});
 				});
 		}

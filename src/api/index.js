@@ -5,13 +5,27 @@ export function getNewsApi(){
   return axios.get(url);
 }
 
+export function fetchNotesCountApi(){
+  const url = `http://127.0.0.1:8000/notes-count`;
+  return axios.get(url);
+}
+
 export function deleteNoteApi(id){
   const url = `http://127.0.0.1:8000/notes/${id}`;
   return axios.delete(url);
 }
 
-export function getNotesApi(){
-  const url = 'http://127.0.0.1:8000/notes';
+export function getNotesApi(params = {}){
+  const {limit = 5, page = 1} = params;
+  let url = 'http://127.0.0.1:8000/notes';
+  if(limit && page) {
+    url = `${url}?limit=${limit}&page=${page}`;
+    return axios.get(url);
+  }
+  if(page) {
+    url = `${url}?page=${page}`;
+    return axios.get(url);
+  }
   return axios.get(url);
 }
 
