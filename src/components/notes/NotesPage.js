@@ -79,7 +79,7 @@ class NotesPage extends React.Component {
           <div>
             <h1>Notes page</h1>
           </div>
-          <div>
+          <div className="row-flex">
             <Button
               label="Create new Note"
               onClick={this.redirectToAddCoursePage}
@@ -91,13 +91,12 @@ class NotesPage extends React.Component {
             />
 
             <Pagination items={itemsPage} activePage={notesPage} maxButtons={5} onSelect={this.handlerSelectPage}/>
-
-            <NotesList
-              isSelectedHandler={this.isSelected}
-              notes={notes}
-              handleRowSelection={this.handleRowSelection}
-             />
           </div>
+          <NotesList
+            isSelectedHandler={this.isSelected}
+            notes={notes}
+            handleRowSelection={this.handleRowSelection}
+          />
         </div>
       </div>
     );

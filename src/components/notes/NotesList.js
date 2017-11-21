@@ -13,7 +13,6 @@ import {
 const NodeRow = (note, index, {isSelectedHandler}) => {
   return(
     <TableRow key={note._id} selected={isSelectedHandler(index)}>
-      <TableRowColumn>{index}</TableRowColumn>
       <TableRowColumn><Link to={'/note/'+note._id}>{note.title}</Link></TableRowColumn>
       <TableRowColumn>{note.text}</TableRowColumn>
     </TableRow>
@@ -32,7 +31,6 @@ const NoteList = ({ notes, handleRowSelection, ...props }) => {
         enableSelectAll={true}
       >
         <TableRow>
-          <TableHeaderColumn>ID</TableHeaderColumn>
           <TableHeaderColumn>Title</TableHeaderColumn>
           <TableHeaderColumn>Text</TableHeaderColumn>
         </TableRow>
