@@ -12,7 +12,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <Header {...this.props} />
-          {this.props.loading && <ProgressBar/>}
+          {(this.props.loading) ? <ProgressBar/> : <div className="fakeProgress"></div>}
           {this.props.children}
         </div>
       </MuiThemeProvider>
