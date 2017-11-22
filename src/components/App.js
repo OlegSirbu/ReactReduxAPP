@@ -23,9 +23,8 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
-    notes: state.notes,
+    notes: state.notesState.notes,
     news: state.news,
     loading : state.ajaxStatusReducer > 0
   }

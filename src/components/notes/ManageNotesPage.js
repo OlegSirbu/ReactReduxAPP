@@ -85,9 +85,10 @@ function getCourseById(notes, id){
 function mapStateToProps(state, ownProps) {
   let noteId = ownProps.params.id;
   let note = {_id: '', title: '', text: ''};
+  const {notesState: { notes }} = state;
 
-  if(noteId && state.notes.length > 0){
-    note = getCourseById(state.notes, noteId);
+  if(noteId && notes.length > 0){
+    note = getCourseById(notes, noteId);
   }
 
   return {

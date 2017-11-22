@@ -90,7 +90,7 @@ class NotesPage extends React.Component {
               onClick={this.deleteNoteHandler}
             />
 
-            <Pagination items={itemsPage} activePage={notesPage} maxButtons={5} onSelect={this.handlerSelectPage}/>
+            {notes.length > 0 && <Pagination items={itemsPage} activePage={notesPage} maxButtons={5} onSelect={this.handlerSelectPage}/>}
           </div>
           <NotesList
             isSelectedHandler={this.isSelected}
