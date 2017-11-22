@@ -29,8 +29,8 @@ class NotesPage extends React.Component {
     this.getNotes();
   }
 
-  getNotes(){
-    setTimeout(()=>{
+  getNotes() {
+    setTimeout(()=> {
       this.props.fetchNotes();
       this.props.fetchNotesCount();
     }, 1000);
@@ -40,30 +40,30 @@ class NotesPage extends React.Component {
     browserHistory.push('/note')
   }
 
-  handleRowSelection = (selectedRows) => {
+  handleRowSelection(selectedRows) {
     this.setState({
       selected: selectedRows
     });
-  };
+  }
 
-  isSelected = (index) => {
+  isSelected(index) {
     return this.state.selected.indexOf(index) !== -1;
-  };
+  }
 
-  deleteNoteHandler = () => {
+  deleteNoteHandler(){
     const {state: {selected}} = this;
     const deleteNotesID = selected.map((selectIndex)=>{
       return this.props.notes[selectIndex]._id;
     });
 
-    return this.props.deleteNote(deleteNotesID).then(()=>{
+    return this.props.deleteNote(deleteNotesID).then(()=> {
       toastr.success('Success delete note');
-      this.setState({selected: []});
+      this.setState({ selected: [] });
       this.getNotes();
-    }).catch(err=>{
-      toastr.error('Error delete note',err);
+    }).catch(err=> {
+      toastr.error('Error delete note', err);
     });
-  };
+  }
 
   handlerSelectPage(selectedPage) {
     this.props.fetchNotes({page: selectedPage});
@@ -108,10 +108,7 @@ NotesPage.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const {
-        notesState: { notes, notesCount },
-        pagination: { limit, notesPage }
-        } = state;
+  const {notesState: { notes, notesCount },pagination: { limit, notesPage }} = state;
   
   return {
     notes: notes,

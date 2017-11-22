@@ -8,18 +8,18 @@ const NewsItemCell = ({tile, id}) => {
 				titleColor: {'color': '#000', 'fontWeight': 'bold', 'fontSize': '22px'}
 		};
 		return(
-		<Link to={`/news/${id}`} >
-				<Card>
-						<CardTitle
-								title={tile.title}
-								titleStyle={style.titleColor}
-							 subtitle={tile.category}
-						/>
-						<CardText>
-								{tile.description}
-						</CardText>
-				</Card>
-		</Link>
+			<Link to={`/news/${id}`} >
+					<Card>
+							<CardTitle
+									title={tile.title}
+									titleStyle={style.titleColor}
+									subtitle={tile.category}
+							/>
+							<CardText>
+									{tile.description}
+							</CardText>
+					</Card>
+			</Link>
 		);
 };
 

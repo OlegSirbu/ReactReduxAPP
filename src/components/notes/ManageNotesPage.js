@@ -19,7 +19,7 @@ class ManageNotesPage extends React.Component {
   }
 
   componentDidMount() {
-    !!this.props.params.id && this.props.fetchNotes();
+    if(this.props.params.id) this.props.fetchNotes();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -77,8 +77,8 @@ ManageNotesPage.contextTypes = {
 };
 
 function getCourseById(notes, id){
-  const note = notes.filter(note => note._id === id );
-  if(note) return note[0];
+  const noteFiltered = notes.filter(note => note._id === id );
+  if(noteFiltered) return noteFiltered[0];
   return null;
 }
 

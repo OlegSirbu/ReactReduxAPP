@@ -16,18 +16,18 @@ export default class SearchInput extends Component {
     }
   }
 
-  handleUpdateInput = (searchText) => {
+  handleUpdateInput(searchText) {
     this.setState({
       searchText: searchText
     });
-  };
+  }
 
-  handleNewRequest = (targetValue) => {
+  handleNewRequest(targetValue) {
     this.props.onSelect(targetValue);
     this.setState({
       searchText: ''
     });
-  };
+  }
 
   render() {
     return (

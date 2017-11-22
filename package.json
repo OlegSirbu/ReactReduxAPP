@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "body-parser": "^1.18.2",
+    "eslint": "^4.11.0",
     "express": "^4.16.2",
     "install": "^0.10.1",
     "jquery": "^3.2.1",
@@ -27,10 +28,15 @@
     "toastr": "^2.1.2"
   },
   "devDependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
     "nodemon": "^1.12.1",
     "react-scripts": "1.0.14"
   },
   "scripts": {
+    "lint": "eslint src --ext jsx,js",
     "dev": "nodemon server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",

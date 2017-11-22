@@ -12,14 +12,14 @@ class NewsItemPage extends React.Component {
 		render() {
 			const {newsItem} = this.props;
 			return (
-				<Card>
-					<CardTitle
-						title={newsItem.title}
-  				/>
-					<CardText>
+					<Card>
+						<CardTitle
+								title={newsItem.title}
+						/>
+						<CardText>
 							{newsItem.description}
-					</CardText>
-				</Card>
+						</CardText>
+					</Card>
 			)
 		}
 }

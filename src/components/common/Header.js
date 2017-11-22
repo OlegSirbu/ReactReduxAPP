@@ -29,15 +29,15 @@ class Header extends Component {
     this.setTab();
   }
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(){
     this.setTab()
   }
 
-  handleChange = (value) => {
+  handleChange(value){
     this.setState({
       initalTab: value
     });
-  };
+  }
 
   render() {
     return (
