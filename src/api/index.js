@@ -1,7 +1,7 @@
 import * as axios from 'axios';
 
 export function getNewsApi(){
-  let url = 'https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=9f55d974fffd4796a278408ae223ab54';
+  let url = 'http://127.0.0.1:8000/news';
   return axios.get(url);
 }
 
@@ -39,4 +39,9 @@ export function saveNoteApi(note) {
   if(note._id) return updateNote(note);
 
   return axios.post(url, note);
+}
+
+export function getFinanceApi() {
+  let url = 'http://127.0.0.1:8000/finance';
+  return axios.get(url);
 }

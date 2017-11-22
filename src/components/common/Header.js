@@ -20,6 +20,9 @@ class Header extends Component {
       case `/note/${this.props.params.id}`:
         this.setState({initalTab: '1'});
         break;
+      case '/finance':
+        this.setState({initalTab: '2'});
+        break;
       default:
         this.setState({initalTab: '0'});
     }
@@ -47,7 +50,7 @@ class Header extends Component {
       >
         <Tab
           value='0'
-          label="News"
+          label="News Sport"
           containerElement={<IndexLink to='/'></IndexLink>}
         >
         </Tab>
@@ -57,6 +60,11 @@ class Header extends Component {
           containerElement={<Link to="/notes" activeClassName="active"></Link>}
         >
         </Tab>
+        <Tab
+            value='2'
+            label="Finance"
+            containerElement={<Link to="/finance" activeClassName="active"></Link>}
+        />
       </Tabs>
     );
   }

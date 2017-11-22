@@ -8,5 +8,6 @@ export default {
     notesPage: 1
   },
   news: [],
+  finance: {},
   ajaxStatusReducer: 0
 };

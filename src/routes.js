@@ -5,6 +5,7 @@ import NewsPage from './components/news/NewsPage';
 import NewsItemPage from './components/news/NewsItemPage';
 import NotesPage from './components/notes/NotesPage';
 import ManageNotesPage from './components/notes/ManageNotesPage';
+import FinancePage from './components/finance/FinancePage';
 
 export default (
     <Route path='/' component={App}>
@@ -13,5 +14,6 @@ export default (
         <Route path='notes' component={NotesPage} />
         <Route path='note' component={ManageNotesPage} />
         <Route path='note/:id' component={ManageNotesPage} />
+        <Route path='finance' component={FinancePage} />
     </Route>
 );
