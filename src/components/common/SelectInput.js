@@ -4,7 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 
 const renderMenuItem = ({nameItem, index}) => {
   return(
-    <MenuItem value={index} primaryText={nameItem} key={nameItem+'_'+index}/>
+    <MenuItem value={nameItem[0]} id={nameItem[0]} primaryText={nameItem[1]} key={nameItem+'_'+index}/>
   )
 };
 
@@ -14,9 +14,9 @@ const SelectInput = ({nameSelect, handleChange, value, options}) => {
             <SelectField
                 floatingLabelText={nameSelect}
                 value={value}
-                onChange={handleChange}
+                onChange={(e,v,p)=> handleChange(e,v,p)}
             >
-                {options.map((nameItem, index) => renderMenuItem({nameItem, index}))}
+                {Object.entries(options).map((nameItem, index) => renderMenuItem({nameItem, index}))}
             </SelectField>
         </div>
     );

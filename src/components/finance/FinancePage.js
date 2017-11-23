@@ -9,7 +9,7 @@ class FinancePage extends React.Component {
     super(props, context);
 
     this.state = {
-      selectedCity: 0,
+      selectedCity: 'all',
       organizations: Object.assign([], this.props.organizations),
       cities: Object.assign({}, this.props.cities)
     };
@@ -30,18 +30,17 @@ class FinancePage extends React.Component {
     }
   }
 
-  handleChangeCity(e, number){
+  handleChangeCity(e, number, cityId){
     if(number !== 0)  {
-      const cityId = Object.keys(this.props.cities)[number-1];
-      const filteredOrg = this.state.organizations.filter((org)=> org.cityId === cityId);
+      const filteredOrg = this.props.organizations.filter((org)=> org.cityId === cityId);
       this.setState({
         organizations: filteredOrg,
-        selectedCity: number
+        selectedCity: cityId
       });
     } else {
       this.setState({
         organizations: this.props.organizations,
-        selectedCity: number
+        selectedCity: cityId
       });
     }
   }
@@ -55,7 +54,7 @@ class FinancePage extends React.Component {
               nameSelect='City'
               value={this.state.selectedCity}
               handleChange={this.handleChangeCity}
-              options={['All'].concat(Object.values(this.props.cities))}
+              options={Object.assign({}, {'all':'All'}, this.props.cities)}
           />
         </div>
         <div className='col s12'>
