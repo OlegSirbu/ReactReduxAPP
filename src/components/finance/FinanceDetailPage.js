@@ -12,31 +12,31 @@ class FinanceDetailPage extends React.Component {
   }
 
   componentDidMount() {
-    if(!this.props.finance.organizations) this.props.fetchFinance();
+    if(this.props.finance.organizations.length === 0) this.props.fetchFinance();
   }
 
   componentWillReceiveProps(nextProps) {
     if(this.props.bank.id !== nextProps.bank.id) {
-      this.setState({bank: Object.assign({},
+      this.setState({bank:
+        Object.assign({},
           nextProps.bank,
-          {city: nextProps.finance.cities[nextProps.bank.cityId]})
+          {city: nextProps.finance.cities[nextProps.bank.cityId]}
+        )
       });
     }
   }
   
   render() {
     const {bank} = this.state;
-
     return (
       <div>
-        <h2>Bank page</h2>
+        <h2>{bank.title}</h2>
         <div className="tableDetail row">
-          <div><span>Name - </span>{bank.title}</div>
           <div><span>City - </span>{bank.city}</div>
           <div><span>Address - </span>{bank.address}</div>
           <div><span>Phone - </span>{bank.phone}</div>
-          <div><span>Currencies USD - </span>{bank.currencies['EUR'].ask}  {bank.currencies['EUR'].bid}</div>
-          <div><span>Currencies EUR - </span>{bank.currencies['EUR'].ask}  {bank.currencies['EUR'].bid}</div>
+          <div><span>USD - </span>sale {bank.currencies['EUR'].ask}  purchase {bank.currencies['EUR'].bid}</div>
+          <div><span>EUR - </span>sale {bank.currencies['EUR'].ask}  purchase {bank.currencies['EUR'].bid}</div>
         </div>
       </div>
     )
@@ -54,6 +54,7 @@ function getBankById(finance, id){
 }
 
 function mapStateToProps(state, ownProps) {
+  const {finance: {organizations: orgs}} = state;
   let bankId = ownProps.params.id;
   let bank = {
     title: '', phone: '', address: '', city: '',
@@ -67,7 +68,7 @@ function mapStateToProps(state, ownProps) {
     }
   };
   
-  if(bankId && state.finance.organizations) bank = getBankById(state.finance, bankId);
+  if(bankId && orgs.length > 0) bank = getBankById(state.finance, bankId);
   
   return {
     finance: state.finance,
