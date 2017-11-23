@@ -4,7 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 
 const renderMenuItem = ({nameItem, index}) => {
   return(
-    <MenuItem value={nameItem.value} primaryText={nameItem.name} key={nameItem+'_'+index}/>
+    <MenuItem value={index} primaryText={nameItem} key={nameItem+'_'+index}/>
   )
 };
 
