@@ -11,40 +11,36 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 
-const Row = (org, index, {isSelectedHandler}) => {
+const Row = (org) => {
   return(
-    <TableRow key={org.id} selected={isSelectedHandler(index)}>
+    <TableRow key={org.id}>
       <TableRowColumn><Link to={'/bank/'+org.id}>{org.title}</Link></TableRowColumn>
       <TableRowColumn>
         {org.currencies['USD'].ask}
       </TableRowColumn>
-      <TableRowColumn>{org.address}</TableRowColumn>
-      <TableRowColumn>{org.phone}</TableRowColumn>
+      <TableRowColumn>
+        {org.currencies['USD'].bid}
+      </TableRowColumn>
     </TableRow>
   )
 };
 
-const FinanceTable = ({ organization, handleRowSelection, ...props }) => {
+const FinanceTable = ({ organization }) => {
   return (
-    <Table
-      onRowSelection={handleRowSelection}
-      selectable={true}
-      multiSelectable={true}
-    >
+    <Table>
       <TableHeader
-        enableSelectAll={true}
+        displaySelectAll={false}
       >
         <TableRow>
           <TableHeaderColumn>Title</TableHeaderColumn>
-          <TableHeaderColumn>Currency USD</TableHeaderColumn>
-          <TableHeaderColumn>Address</TableHeaderColumn>
-          <TableHeaderColumn>Phone</TableHeaderColumn>
+          <TableHeaderColumn>Currency USD sale</TableHeaderColumn>
+          <TableHeaderColumn>Currency USD purchase</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody
-        deselectOnClickaway={false}
+          displayRowCheckbox={false}
       >
-        {organization.map((org, index) => org.currencies['USD'] && Row(org, index, props))}
+        {organization.map((org) => org.currencies['USD'] && org.currencies['EUR'] && Row(org))}
       </TableBody>
     </Table>
   );

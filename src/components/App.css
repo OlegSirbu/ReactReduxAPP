@@ -35,3 +35,14 @@ a {
   margin: 7.5px 0 15px 0;
   height: 4px;
 }
+
+.tableDetail {
+  padding: 20px;
+}
+.tableDetail div {
+  color: #082d3ec7;
+}
+.tableDetail  span{
+  color: #000000;
+  font-weight: bold;
+}

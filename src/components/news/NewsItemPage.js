@@ -26,7 +26,7 @@ class NewsItemPage extends React.Component {
 
 NewsItemPage.propTypes = {
 		news: PropTypes.array.isRequired,
-		newsItem: PropTypes.object,
+		newsItem: PropTypes.object
 };
 
 function getNewsById(news, id){

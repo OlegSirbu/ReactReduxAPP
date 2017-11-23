@@ -21,6 +21,7 @@ class Header extends Component {
         this.setState({initalTab: '1'});
         break;
       case '/finance':
+      case `/bank/${this.props.params.id}`:
         this.setState({initalTab: '2'});
         break;
       default:
