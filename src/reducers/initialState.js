@@ -1,7 +1,7 @@
 export default {
   notesState : {
     notesCount: 0,
-    notes: []  
+    notes: []
   },
   pagination: {
     limit: 5,
@@ -12,5 +12,6 @@ export default {
     cities: {},
     organizations: []
   },
-  ajaxStatusReducer: 0
+  ajaxStatusReducer: 0,
+  films:[]
 };

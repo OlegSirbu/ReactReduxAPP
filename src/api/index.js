@@ -45,3 +45,7 @@ export function getFinanceApi() {
   let url = 'http://127.0.0.1:8000/finance';
   return axios.get(url);
 }
+export function getFilmsApi() {
+  let url = 'http://127.0.0.1:8000/films';
+  return axios.get(url);
+}

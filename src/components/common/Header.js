@@ -24,6 +24,9 @@ class Header extends Component {
       case `/bank/${this.props.params.id}`:
         this.setState({initalTab: '2'});
         break;
+      case '/films':
+        this.setState({initalTab: '3'});
+        break;
       default:
         this.setState({initalTab: '0'});
     }
@@ -65,6 +68,11 @@ class Header extends Component {
             value='2'
             label="Finance"
             containerElement={<Link to="/finance" activeClassName="active"></Link>}
+        />
+        <Tab
+            value='3'
+            label="Films"
+            containerElement={<Link to="/films" activeClassName="active"></Link>}
         />
       </Tabs>
     );
