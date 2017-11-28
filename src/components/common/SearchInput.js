@@ -5,15 +5,11 @@ export default class SearchInput extends Component {
   constructor(props, context){
     super(props, context);
     this.state = {
-      searchText: ''
+      searchText: '',
+      dataSource: props.dataSource || []
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(this.props.dataSource.length !== nextProps.dataSource.length) {
-      const names = nextProps.dataSource.map((item)=>{return item.title});
-      this.setState({names: Object.assign([], names)});
-    }
+    this.handleUpdateInput = this.handleUpdateInput.bind(this);
+    this.handleNewRequest = this.handleNewRequest.bind(this);
   }
 
   handleUpdateInput(searchText) {
@@ -38,7 +34,7 @@ export default class SearchInput extends Component {
           searchText={this.state.searchText}
           onUpdateInput={this.handleUpdateInput}
           onNewRequest={this.handleNewRequest}
-          dataSource={this.props.dataSource}
+          dataSource={this.state.dataSource}
           filter={(searchText, key) => (key.indexOf(searchText) !== -1)}
           openOnFocus={true}
         />
