@@ -8,6 +8,7 @@ import ManageNotesPage from './components/notes/ManageNotesPage';
 import FinancePage from './components/finance/FinancePage';
 import FinanceDetailPage from './components/finance/FinanceDetailPage';
 import FilmsPage from './components/films/FilmsPage';
+import FilmsDetailPage from './components/films/FilmsDetailPage';
 
 export default (
     <Route path='/' component={App}>
@@ -19,5 +20,6 @@ export default (
         <Route path='finance' component={FinancePage} />
         <Route path='/bank/:id' component={FinanceDetailPage} />
         <Route path='/films' component={FilmsPage} />
+        <Route path='/film/:id' component={FilmsDetailPage} />
     </Route>
 );

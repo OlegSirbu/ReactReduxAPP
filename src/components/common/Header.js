@@ -25,6 +25,7 @@ class Header extends Component {
         this.setState({initalTab: '2'});
         break;
       case '/films':
+      case `/film/${this.props.params.id}`:
         this.setState({initalTab: '3'});
         break;
       default:

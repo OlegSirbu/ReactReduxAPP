@@ -55,3 +55,8 @@ export function searchFilmsApi(params = {}) {
   let url = `http://127.0.0.1:8000/search-films?query=${params.search}`;
   return axios.get(url);
 }
+
+export function fetchFilmByIdApi(id = '') {
+  let url = `http://127.0.0.1:8000/film/${id}`;
+  return axios.get(url);
+}

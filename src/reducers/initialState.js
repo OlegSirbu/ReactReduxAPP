@@ -13,5 +13,6 @@ export default {
     organizations: []
   },
   ajaxStatusReducer: 0,
-  films:[]
+  films:[],
+  film: {}
 };

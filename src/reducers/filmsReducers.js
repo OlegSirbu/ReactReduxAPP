@@ -9,3 +9,11 @@ export const filmsReducer = (state = initialState.films, actions) => {
       return state;
   }
 };
+export const filmReducer = (state = initialState.film, actions) => {
+  switch (actions.type) {
+    case types.SUCCESS_LOAD_FILM:
+      return actions.payload;
+    default :
+      return state;
+  }
+};

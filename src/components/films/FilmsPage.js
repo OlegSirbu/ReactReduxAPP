@@ -47,6 +47,9 @@ class FilmsPage extends React.Component {
         </div>
 
         <div className='col s12'>
+          <h2>The most popular films</h2>
+        </div>
+        <div className='col s12'>
           <FilmItemPage films={films}/>
         </div>
       </div>
