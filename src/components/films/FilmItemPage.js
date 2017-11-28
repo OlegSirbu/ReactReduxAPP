@@ -1,21 +1,23 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import { fetchFilms } from '../../actions/filmsActions';
 import {GridList, GridTile} from 'material-ui/GridList';
+import PlFilmsImg from '../../Images/pl-films.jpeg';
+const patchToImg = `https://image.tmdb.org/t/p/original`;
 
-const FilmRow = ({film : {title, release_date, overview, backdrop_path, vote_average}}) => {
-
-  debugger;
+const FilmRow = ({film : {title, overview, backdrop_path : imgPath}}) => {
   return(
     <GridTile
-      key={backdrop_path}
+      key={imgPath}
       title={title}
       subtitle={<span>by <b>{overview}</b></span>}
     >
-     <img src={`https://image.tmdb.org/t/p/original${backdrop_path}`} />
+      {imgPath
+          ? <img src={patchToImg+imgPath} />
+          : <img src={PlFilmsImg} />
+      }
+
     </GridTile>
   )
-}
+};
 
 const FilmItemPage = ({ films }) => {
   return (
