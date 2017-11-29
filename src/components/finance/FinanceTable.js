@@ -11,15 +11,15 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 
-const Row = (org) => {
+const Row = ({id, title, currencies }) => {
   return(
-    <TableRow key={org.id}>
-      <TableRowColumn><Link to={'/bank/'+org.id}>{org.title}</Link></TableRowColumn>
+    <TableRow key={id}>
+      <TableRowColumn><Link to={`/bank/${id}`}>{title}</Link></TableRowColumn>
       <TableRowColumn>
-        {org.currencies['USD'].ask}
+        {currencies['USD'].ask}
       </TableRowColumn>
       <TableRowColumn>
-        {org.currencies['USD'].bid}
+        {currencies['USD'].bid}
       </TableRowColumn>
     </TableRow>
   )

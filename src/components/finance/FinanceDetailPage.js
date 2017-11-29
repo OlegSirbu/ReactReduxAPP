@@ -7,43 +7,41 @@ class FinanceDetailPage extends React.Component {
     super(props, context);
 
     this.state = {
-      bank: Object.assign({}, this.props.bank)
+      bank: Object.assign({}, this.props.finance.bank)
     };
   }
 
   componentDidMount() {
-    if(this.props.finance.organizations.length === 0) this.props.fetchFinance();
+    if(!this.props.finance.organizations.length) this.props.fetchFinance();
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.bank.id !== nextProps.bank.id) {
+    if(this.props.finance.organizations.length !== nextProps.finance.organizations.length) {
       this.setState({bank:
         Object.assign({},
-          nextProps.bank,
-          {city: nextProps.finance.cities[nextProps.bank.cityId]}
+          nextProps.finance.bank,
+          {city: nextProps.finance.cities[nextProps.finance.bank.cityId]}
         )
       });
     }
   }
   
   render() {
-    const {bank} = this.state;
+    const {bank: {title, city, address, phone, currencies}} = this.state;
     return (
       <div>
-        <h2>{bank.title}</h2>
+        <h2>{title}</h2>
         <div className="tableDetail row">
-          <div><span>City - </span>{bank.city}</div>
-          <div><span>Address - </span>{bank.address}</div>
-          <div><span>Phone - </span>{bank.phone}</div>
-          <div><span>USD - </span>sale {bank.currencies['EUR'].ask}  purchase {bank.currencies['EUR'].bid}</div>
-          <div><span>EUR - </span>sale {bank.currencies['EUR'].ask}  purchase {bank.currencies['EUR'].bid}</div>
+          <div><span>City - </span>{city}</div>
+          <div><span>Address - </span>{address}</div>
+          <div><span>Phone - </span>{phone}</div>
+          <div><span>USD - </span>sale {currencies['EUR'].ask}  purchase {currencies['EUR'].bid}</div>
+          <div><span>EUR - </span>sale {currencies['EUR'].ask}  purchase {currencies['EUR'].bid}</div>
         </div>
       </div>
     )
   }
 }
-
-FinanceDetailPage.propTypes = {};
 
 function getBankById(finance, id){
   const {organizations: banks, cities} = finance;
@@ -54,26 +52,13 @@ function getBankById(finance, id){
 }
 
 function mapStateToProps(state, ownProps) {
-  const {finance: {organizations: orgs}} = state;
+  let {finance: {organizations: orgs}} = state;
   let bankId = ownProps.params.id;
-  let bank = {
-    title: '', phone: '', address: '', city: '',
-    currencies: {
-      EUR: {
-        ask: '',bid: ''
-      },
-      USD: {
-        ask: '',bid: ''
-      }
-    }
-  };
-  
-  if(bankId && orgs.length > 0) bank = getBankById(state.finance, bankId);
-  
-  return {
-    finance: state.finance,
-    bank: bank
-  };
+  let res = { finance: state.finance };
+  if(bankId && orgs.length > 0) {
+    res = { finance: {...state.finance, bank: getBankById(state.finance, bankId)}};
+  }
+  return res;
 }
 
 const mapDispatchToProps = (dispatch) => ({
