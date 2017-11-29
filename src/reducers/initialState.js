@@ -1,7 +1,8 @@
 export default {
   notesState : {
     notesCount: 0,
-    notes: []
+    notes: [],
+    note: { _id: '', title: '', text: '' }
   },
   pagination: {
     limit: 5,
@@ -10,7 +11,14 @@ export default {
   news: [],
   finance: {
     cities: {},
-    organizations: []
+    organizations: [],
+    bank: {
+      title: '', phone: '', address: '', city: '',
+      currencies: {
+        EUR: { ask: '', bid: '' },
+        USD: { ask: '', bid: '' }
+      }
+    }
   },
   ajaxStatusReducer: 0,
   films:[],

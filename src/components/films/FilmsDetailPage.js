@@ -17,7 +17,6 @@ class FilmsDetailPage extends React.Component {
 
   render() {
     const {film: {id, overview, original_title, backdrop_path, status, release_date, budget, genres, production_companies: prod_com }} = this.props;
-    debugger;
     return (
       <div>
         {(id) ?

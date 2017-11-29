@@ -17,7 +17,7 @@ class Header extends Component {
       case '/notes':
       case '/note':
       case '/note/':
-      case `/note/${this.props.params.id}`:
+      case `/note/${this.props.params.id}/${this.props.params.page}`:
         this.setState({initalTab: '1'});
         break;
       case '/finance':
