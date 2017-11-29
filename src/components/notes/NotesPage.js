@@ -6,6 +6,7 @@ import {Pagination} from 'react-materialize'
 
 import '../App.css';
 import {fetchNotes, deleteNote, fetchNotesCount} from '../../actions/notesActions';
+import { setPage } from '../../actions/paginationActions';
 import NotesList from './NotesList';
 import Button from '../common/Button';
 import toastr from 'toastr';
@@ -66,6 +67,7 @@ class NotesPage extends React.Component {
   }
 
   handlerSelectPage(selectedPage) {
+    this.props.setPage({page: selectedPage});
     this.props.fetchNotes({page: selectedPage});
   }
 
@@ -89,12 +91,14 @@ class NotesPage extends React.Component {
               label="Delete"
               onClick={this.deleteNoteHandler}
             />
-
-            {notes.length > 0 && <Pagination items={itemsPage} activePage={notesPage} maxButtons={5} onSelect={this.handlerSelectPage}/>}
+            { notes.length > 0 && 
+              <Pagination items={itemsPage} activePage={notesPage} maxButtons={5} onSelect={this.handlerSelectPage}/>
+            }
           </div>
           <NotesList
             isSelectedHandler={this.isSelected}
             notes={notes}
+            notesPage={notesPage}
             handleRowSelection={this.handleRowSelection}
           />
         </div>
@@ -120,6 +124,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchNotes: (params) => dispatch(fetchNotes(params)),
+  setPage: (params) => dispatch(setPage(params)),
   fetchNotesCount: () => dispatch(fetchNotesCount()),
   deleteNote: (ids) => dispatch(deleteNote(ids))
 });

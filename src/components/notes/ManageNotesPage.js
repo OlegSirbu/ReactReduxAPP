@@ -19,7 +19,8 @@ class ManageNotesPage extends React.Component {
   }
 
   componentDidMount() {
-    if(this.props.params.id) this.props.fetchNotes();
+    const {page, id} = this.props.params;
+    if(id && page) this.props.fetchNotes({page});
   }
 
   componentWillReceiveProps(nextProps) {
@@ -77,15 +78,16 @@ ManageNotesPage.contextTypes = {
 };
 
 function getCourseById(notes, id){
-  const noteFiltered = notes.filter(note => note._id === id );
+  const noteFiltered = notes.filter(note => id.includes(note._id));
   if(noteFiltered) return noteFiltered[0];
   return null;
 }
 
 function mapStateToProps(state, ownProps) {
   let noteId = ownProps.params.id;
-  let note = {_id: '', title: '', text: ''};
-  const {notesState: { notes }} = state;
+  let {
+        notesState: { notes, note }
+      } = state;
 
   if(noteId && notes.length > 0){
     note = getCourseById(notes, noteId);
@@ -97,7 +99,7 @@ function mapStateToProps(state, ownProps) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchNotes: () => dispatch(fetchNotes()),
+  fetchNotes: (params) => dispatch(fetchNotes(params)),
   saveNote: (params) => dispatch(saveNote(params))
 });
 

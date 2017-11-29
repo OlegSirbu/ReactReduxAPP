@@ -10,11 +10,11 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 
-const NodeRow = (note, index, {isSelectedHandler}) => {
+const NodeRow = ({_id, title, text}, index, {isSelectedHandler, notesPage}) => {
   return(
-    <TableRow key={note._id} selected={isSelectedHandler(index)}>
-      <TableRowColumn><Link to={'/note/'+note._id}>{note.title}</Link></TableRowColumn>
-      <TableRowColumn>{note.text}</TableRowColumn>
+    <TableRow key={_id} selected={isSelectedHandler(index)}>
+      <TableRowColumn><Link to={`/note/${_id}/${notesPage}`}>{title}</Link></TableRowColumn>
+      <TableRowColumn>{text}</TableRowColumn>
     </TableRow>
   )
 };
