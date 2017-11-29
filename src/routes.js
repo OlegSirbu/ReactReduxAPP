@@ -15,9 +15,8 @@ export default (
         <IndexRoute component={NewsPage} />
         <Route path='news/:title'  component={NewsItemPage} />
         <Route path='notes' component={NotesPage} />
-        <Route path='note' component={ManageNotesPage} />
-        <Route path='note/:id' component={ManageNotesPage} />
-        <Route path='finance' component={FinancePage} />
+        <Route path='note/:id/:page' component={ManageNotesPage} />
+        <Route path='/finance' component={FinancePage} />
         <Route path='/bank/:id' component={FinanceDetailPage} />
         <Route path='/films' component={FilmsPage} />
         <Route path='/film/:id' component={FilmsDetailPage} />
