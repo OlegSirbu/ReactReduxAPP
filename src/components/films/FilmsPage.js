@@ -12,7 +12,6 @@ class FilmsPage extends React.Component {
       searchText: ''
     };
     this.handleUpdateInput = this.handleUpdateInput.bind(this);
-    this.handleNewRequest = this.handleNewRequest.bind(this);
   }
 
   componentDidMount() {
@@ -20,48 +19,41 @@ class FilmsPage extends React.Component {
   }
 
   handleUpdateInput(searchText) {
-    this.setState({
-      searchText: searchText
-    });
-    this.props.searchFilms({search: searchText});
+    this.setState({searchText: searchText});
+    if(searchText !== '') this.props.searchFilms({search: searchText});
+    if(searchText === '') this.props.fetchFilms();
   }
-
-  handleNewRequest(targetValue) {
-    this.props.onSelect(targetValue);
-    this.setState({
-      searchText: ''
-    });
-  }
-
 
   render() {
-    const {films} = this.props;
+    const {films, loading} = this.props;
     return (
       <div className="row">
         <div className='col s12'>
           <SearchInput
               searchText={this.state.searchText}
               handleUpdateInput={this.handleUpdateInput}
-              handleNewRequest={this.handleNewRequest}
           />
         </div>
-
         <div className='col s12'>
-          <h2>The most popular films</h2>
-        </div>
-        <div className='col s12'>
-          <FilmItemPage films={films}/>
+        {(films.err)
+            ? <h2>{films.err}</h2>
+            : (films.length > 0 || loading)
+              ? <div>
+                  <h2>The most popular films</h2>
+                  <FilmItemPage films={films}/>
+                </div>
+              : <h2>Can`t find films</h2>
+        }
         </div>
       </div>
     )
   }
 }
 
-FilmsPage.propTypes = {};
-
 function mapStateToProps(state) {
   return {
-    films: state.films
+    films: state.films,
+    loading : state.ajaxStatusReducer > 0
   };
 }
 
