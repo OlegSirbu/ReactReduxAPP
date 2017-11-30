@@ -1,10 +1,11 @@
-const express        = require('express');
-const MongoClient    = require('mongodb').MongoClient;
-const bodyParser     = require('body-parser');
-const db             = require('./config/db');
-const app            = express();
-const port = 8000;
-var cors = require('cors');
+const express     = require('express');
+const MongoClient = require('mongodb').MongoClient;
+const bodyParser  = require('body-parser');
+const config      = require('./config');
+const routes      = require('.././app/routes');
+const app         = express();
+const port        = 8000;
+const cors        = require('cors');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,9 +17,10 @@ app.all('*',function(req, res, next) {
   next();
 });
 
-MongoClient.connect(db.url, (err, database) => {
-  if (err) return console.log(err);
-  require('.././app/routes')(app, database);
+MongoClient.connect(config.url, (err, database) => {
+  if (err) console.log('mongoDB ERROR:',err);
+  (database) ? routes(app, database) : routes(app);
+
   app.listen(port, () => {
     console.log('We are live on ' + port);
   });
