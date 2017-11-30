@@ -2,7 +2,7 @@ const express     = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const bodyParser  = require('body-parser');
 const config      = require('./config');
-const routes      = require('.././app/routes');
+const app_routes  = require('.././app/routes');
 const app         = express();
 const port        = 8000;
 const cors        = require('cors');
@@ -17,11 +17,17 @@ app.all('*',function(req, res, next) {
   next();
 });
 
-MongoClient.connect(config.url, (err, database) => {
-  if (err) console.log('mongoDB ERROR:',err);
-  (database) ? routes(app, database) : routes(app);
-
-  app.listen(port, () => {
-    console.log('We are live on ' + port);
-  });
+app_routes(app);
+app.listen(port, () => {
+  console.log('We are live on ' + port);
 });
+
+
+//MongoClient.connect(config.url, (err, database) => {
+//  if (err) console.log('mongoDB ERROR:',err);
+//  (database) ? routes(app, database) : routes(app);
+//
+//  app.listen(port, () => {
+//    console.log('We are live on ' + port);
+//  });
+//});
