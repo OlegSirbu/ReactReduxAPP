@@ -10,4 +10,4 @@ use command `npm run dev`
 
 For running UI use command `npm start`
 
-Routing for Beckend implemented in 'routes/note_routes.js', all GRUD operations.
+Routing for Beckend implemented in folder 'routes', all GRUD operations.
