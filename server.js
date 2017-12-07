@@ -17,17 +17,11 @@ app.all('*',function(req, res, next) {
   next();
 });
 
-app_routes(app);
-app.listen(port, () => {
-  console.log('We are live on ' + port);
+MongoClient.connect(config.url, (err, database) => {
+  if (err) console.log('Mongo_DB ERROR:',err);
+  (database) ? app_routes(app, database) : app_routes(app);
+
+  app.listen(port, () => {
+    console.log('We are live on ' + port);
+  });
 });
-
-
-//MongoClient.connect(config.url, (err, database) => {
-//  if (err) console.log('mongoDB ERROR:',err);
-//  (database) ? routes(app, database) : routes(app);
-//
-//  app.listen(port, () => {
-//    console.log('We are live on ' + port);
-//  });
-//});
