@@ -14,19 +14,11 @@ class Header extends Component {
 
   setTab(){
     switch (window.location.pathname) {
-      case '/notes':
-      case '/note':
-      case '/note/':
-      case `/note/${this.props.params.id}/${this.props.params.page}`:
+      case '/notes' || '/note' || '/note/' || `/note/${this.props.params.id}/${this.props.params.page}`:
         this.setState({initalTab: '1'});
         break;
-      case '/finance':
-      case `/bank/${this.props.params.id}`:
+      case '/films' || `/film/${this.props.params.id}`:
         this.setState({initalTab: '2'});
-        break;
-      case '/films':
-      case `/film/${this.props.params.id}`:
-        this.setState({initalTab: '3'});
         break;
       default:
         this.setState({initalTab: '0'});
@@ -67,11 +59,6 @@ class Header extends Component {
         </Tab>
         <Tab
             value='2'
-            label="Finance"
-            containerElement={<Link to="/finance" activeClassName="active"></Link>}
-        />
-        <Tab
-            value='3'
             label="Films"
             containerElement={<Link to="/films" activeClassName="active"></Link>}
         />
