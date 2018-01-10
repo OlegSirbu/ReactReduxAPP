@@ -62,6 +62,11 @@ class Header extends Component {
             label="Films"
             containerElement={<Link to="/films" activeClassName="active"></Link>}
         />
+        <Tab
+            value='3'
+            label="Create new user"
+            containerElement={<Link to="/newUser" activeClassName="active"></Link>}
+        />
       </Tabs>
     );
   }

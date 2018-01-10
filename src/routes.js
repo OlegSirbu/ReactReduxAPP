@@ -7,6 +7,7 @@ import NotesPage from './components/notes/NotesPage';
 import ManageNotesPage from './components/notes/ManageNotesPage';
 import FilmsPage from './components/films/FilmsPage';
 import FilmsDetailPage from './components/films/FilmsDetailPage';
+import CreateUserPage from './components/user/CreateUserPage';
 
 export default (
     <Route path='/' component={App}>
@@ -17,5 +18,6 @@ export default (
         <Route path='note/:id/:page' component={ManageNotesPage} />
         <Route path='/films' component={FilmsPage} />
         <Route path='/film/:id' component={FilmsDetailPage} />
+        <Route path='/newUser' component={CreateUserPage} />
     </Route>
 );

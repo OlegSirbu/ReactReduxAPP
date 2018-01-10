@@ -7,10 +7,10 @@ module.exports = function (app, db) {
     const newUser = new User(req.body);
 
     newUser.validate(function(err){
-      if(err) return res.send('error, validation');
+      if(err) return res.status(400).send({ error: 'validation error!' });
 
       db.collection('users').insert(newUser, (err, result) => {
-        if(err) return res.send({'error': 'Error in insert new user'});
+        if(err) return res.status(400).send({'error': 'Error in insert new user'});
         return res.send({ok:'user was created!'});
       }); 
     });

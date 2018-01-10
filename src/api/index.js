@@ -60,3 +60,8 @@ export function fetchFilmByIdApi(id = '') {
   let url = `http://127.0.0.1:8000/film/${id}`;
   return axios.get(url);
 }
+
+export function createUserApi(user) {
+  let url = `http://127.0.0.1:8000/user`;
+  return axios.post(url, user);
+}
